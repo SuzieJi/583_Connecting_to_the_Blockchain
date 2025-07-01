@@ -1,7 +1,7 @@
 import requests
 import json
 
-CHAINSTACK_IPFS_URL      = 'https://bsc-testnet.core.chainstack.com/'
+CHAINSTACK_IPFS_URL      = 'https://bsc-testnet.core.chainstack.com/617ec8fbe82ed75f59d20f6d3166a214'
 CHAINSTACK_IPFS_USERNAME = 'brave-dubinsky'
 CHAINSTACK_IPFS_PASSWORD = 'strive-boney-popper-action-ankle-karma'
 
