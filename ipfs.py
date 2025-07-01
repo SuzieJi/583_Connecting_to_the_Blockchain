@@ -1,9 +1,9 @@
 import requests
 import json
 
-INFURA_PROJECT_ID     = '5201817cd3f79482142b'
-INFURA_PROJECT_SECRET = 'cc2b8b2b904156c58e4b85516b493fc0ffbe980adb2b9755d48dcdcb2ecc4324'
-INFURA_URL            = 'https://ipfs.infura.io:5001/api/v0'
+CHAINSTACK_IPFS_URL      = 'https://bsc-testnet.core.chainstack.com/'
+CHAINSTACK_IPFS_USERNAME = 'brave-dubinsky'
+CHAINSTACK_IPFS_PASSWORD = 'strive-boney-popper-action-ankle-karma'
 
 def pin_to_ipfs(data):
 	assert isinstance(data,dict), f"Error pin_to_ipfs expects a dictionary"
@@ -11,15 +11,15 @@ def pin_to_ipfs(data):
 	json_str = json.dumps(data)
 	files = {'file': ('data.json', json_str)}
 	resp = requests.post(
-			f"{INFURA_URL}/add",
+			f"{CHAINSTACK_IPFS_URL}/add",
 			files=files,
-			auth=(INFURA_PROJECT_ID, INFURA_PROJECT_SECRET)
+			auth=(CHAINSTACK_IPFS_USERNAME, CHAINSTACK_IPFS_PASSWORD)
 	)
 	resp.raise_for_status()
 	result = resp.json()
-	cid = result.get('Hash')
+	cid = result.get('Hash') or result.get('Cid') or result.get('cid')
 	if not cid:
-			raise RuntimeError(f"Failed to pin data: {result}")
+			raise RuntimeError(f"Failed to pin data, unexpected response: {result}")
 	##
 	return cid
 
@@ -28,9 +28,9 @@ def get_from_ipfs(cid,content_type="json"):
 	#YOUR CODE HERE	
 	params = {'arg': cid}
 	resp = requests.post(
-			f"{INFURA_URL}/cat",
+			f"{CHAINSTACK_IPFS_URL}/cat",
 			params=params,
-			auth=(INFURA_PROJECT_ID, INFURA_PROJECT_SECRET)
+			auth=(CHAINSTACK_IPFS_USERNAME, CHAINSTACK_IPFS_PASSWORD)
 	)
 	resp.raise_for_status()
 	raw = resp.text
