@@ -27,14 +27,14 @@ def get_from_ipfs(cid,content_type="json"):
 	assert isinstance(cid,str), f"get_from_ipfs accepts a cid in the form of a string"
 	#YOUR CODE HERE	
 	params = {'arg': cid}
-		url = f"{PINATA_GATEWAY}/{cid}"
-		response = requests.get(url)
-		response.raise_for_status()
+	url = f"{PINATA_GATEWAY}/{cid}"
+	response = requests.get(url)
+	response.raise_for_status()
 
-		if content_type.lower() == "json":
-				return response.json()
-		else:
-				return response.content
+	if content_type.lower() == "json":
+			return response.json()
+	else:
+			return response.content
 	##
 	assert isinstance(data,dict), f"get_from_ipfs should return a dict"
 	return data
