@@ -26,7 +26,7 @@ def connect_with_middleware(contract_json):
 
 	# TODO complete this method
 	# The first section will be the same as "connect_to_eth()" but with a BNB url
-	bnb_url = "https://bsc-testnet.core.chainstack.com/617ec8fbe82ed75f59d20f6d3166a214"
+	url = "https://bsc-testnet.core.chainstack.com/617ec8fbe82ed75f59d20f6d3166a214"
 	w3 = Web3(HTTPProvider(url))
 
 	# The second section requires you to inject middleware into your w3 object and
